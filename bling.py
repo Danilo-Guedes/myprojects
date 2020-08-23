@@ -1,3 +1,6 @@
+"""
+TODO Quando houver erro de relatório consumir uma API de whatsapp e me eviar mensagem de texto
+"""
 import sys
 sys.path.append('C:/Users/dan_g/Envs/myprojects/Lib/site-packages')
 
@@ -42,6 +45,7 @@ def relatorio_de_vendas_diaras():
     browser.find_element_by_xpath('/html/body/div[10]/div[3]/div/button[1]').click()
     time.sleep(2)
     browser.find_element_by_xpath ('//*[@id="menu-acoes"]/li[5]/a').click()
+
 
 if __name__ == '__main__':
     relatorio_de_vendas_diaras()
