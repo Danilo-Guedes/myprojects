@@ -1,9 +1,6 @@
 """
 TODO Quando o script der erro qualquer erro, consumir uma API de whatsapp e me eviar mensagem de texto
 """
-import sys
-sys.path.append('C:/Users/dan_g/Envs/myprojects/Lib/site-packages')
-
 from bs4 import BeautifulSoup
 import requests
 import selenium
