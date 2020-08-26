@@ -1,24 +1,24 @@
 """ Módulo para treinar com a biblioteca OS"""
-
-
 import os, os.path
 
 
 def listando_arquivos():
-    global path_escolhido, lista_geral, so_arquivos, so_dir
-    path_escolhido = str(input('??? preencha com o caminho do diretório escolhido >>  '))
-
-    lista_geral = os.listdir(path_escolhido)
-
-    #descobrindo o que são arquivos e o que são diretórios
-    so_arquivos = [i.name for i in os.scandir(path_escolhido) if i.is_file()]
-    so_dir = [i.name for i in os.scandir(path_escolhido) if i.is_dir()]
-
-    print(f'Seu diretório escolhido tem {len(lista_geral)} arquivos, sendo {len(so_arquivos)} arquivos e {len(so_dir)} diretórios')
-
-    #posicionando o script no diretorio escolhido para futura interação
-    os.chdir(path_escolhido)
-    print("________" * 10)
+    while True:
+        try:
+            global path_escolhido, lista_geral, so_arquivos, so_dir
+            path_escolhido = str(input('??? Preencha com o caminho do diretório escolhido >>  '))
+            lista_geral = os.listdir(path_escolhido)
+        except Exception:
+            print(f'>>> Você precisa escolher um diretório valido, por gentileza tente novamente!!!')
+        else:
+            #descobrindo o que são arquivos e o que são diretórios
+            so_arquivos = [i.name for i in os.scandir(path_escolhido) if i.is_file()]
+            so_dir = [i.name for i in os.scandir(path_escolhido) if i.is_dir()]
+            print(f'>>> Seu diretório escolhido tem {len(lista_geral)} arquivos, sendo {len(so_arquivos)} arquivos e {len(so_dir)} diretórios')
+                    #posicionando o script no diretorio escolhido para futura interação
+            os.chdir(path_escolhido)
+            print("________" * 10)
+            break
 
 def relacionar_arquivos():
     while True:
@@ -40,8 +40,8 @@ def finding_extentions():
         if ext not in lista_extensoes:
         #lista_extencoes.append(i.split('.')[-1])
             lista_extensoes.append(ext)
-    print(f'>>>você tem arquivos em {len(lista_extensoes)} extenções diferentes')
-    print(f'>>>sendo elas {lista_extensoes}')
+    print(f'>>> Você tem arquivos em {len(lista_extensoes)} extenções diferentes')
+    print(f'>>> Sendo elas {lista_extensoes}')
     print("________" * 10)
 
 
@@ -60,8 +60,10 @@ def deseja_organizar_arquivos():
                 destino = os.getcwd() + "/" + i.split('.')[-1] + "/" + i
                 os.rename(atual, destino)
             print(f'>>> Seus arquivos foram ORGANIZADOS!!')
+            print(f'>>> Obrigado por usar o Script do MESTRE !!!')
             break
         else:
+            print(f'>>> Obrigado por usar o Script do MESTRE !!!')
             break
 
 
