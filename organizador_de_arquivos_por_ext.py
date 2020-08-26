@@ -14,11 +14,15 @@ def listando_arquivos():
             #descobrindo o que são arquivos e o que são diretórios
             so_arquivos = [i.name for i in os.scandir(path_escolhido) if i.is_file()]
             so_dir = [i.name for i in os.scandir(path_escolhido) if i.is_dir()]
-            print(f'>>> Seu diretório escolhido tem {len(lista_geral)} arquivos, sendo {len(so_arquivos)} arquivos e {len(so_dir)} diretórios')
-                    #posicionando o script no diretorio escolhido para futura interação
-            os.chdir(path_escolhido)
-            print("________" * 10)
-            break
+            if len(so_arquivos) == 0:
+                print(f'>>> Seu diretório não tem arquivos para serem organizados, escolha um diretório contendo arquivos!!!')
+            else:    
+                print("________" * 10)
+                print(f'>>> Seu diretório escolhido tem {len(lista_geral)} arquivos, sendo {len(so_arquivos)} arquivos e {len(so_dir)} diretórios')
+                #posicionando o script no diretorio escolhido para futura interação
+                os.chdir(path_escolhido)
+                print("________" * 10)
+                break
 
 def relacionar_arquivos():
     while True:
@@ -40,9 +44,10 @@ def finding_extentions():
         if ext not in lista_extensoes:
         #lista_extencoes.append(i.split('.')[-1])
             lista_extensoes.append(ext)
+    print("________" * 10)        
     print(f'>>> Você tem arquivos em {len(lista_extensoes)} extenções diferentes')
     print(f'>>> Sendo elas {lista_extensoes}')
-    print("________" * 10)
+    print("________" * 10)#
 
 
 def deseja_organizar_arquivos():
@@ -72,6 +77,7 @@ if __name__ == "__main__":
     relacionar_arquivos()
     finding_extentions()
     deseja_organizar_arquivos()
+    
 
     #print(f'seu local atual é {os.getcwd()}')
     #print(f'o diretório escolhido é {path_escolhido}')
