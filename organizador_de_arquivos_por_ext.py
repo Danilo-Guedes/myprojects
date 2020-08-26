@@ -6,7 +6,7 @@ import os, os.path
 
 def listando_arquivos():
     global path_escolhido, lista_geral, so_arquivos, so_dir
-    path_escolhido = str(input('preencha com o caminho do diretório escolhido >>  '))
+    path_escolhido = str(input('??? preencha com o caminho do diretório escolhido >>  '))
 
     lista_geral = os.listdir(path_escolhido)
 
@@ -18,13 +18,13 @@ def listando_arquivos():
 
     #posicionando o script no diretorio escolhido para futura interação
     os.chdir(path_escolhido)
-    print("__**__**" * 10)
+    print("________" * 10)
 
 def relacionar_arquivos():
     while True:
-        resposta = input('Você gostaria de listar seus arquivos e diretórios? (Y/N)').upper()
+        resposta = input('??? Você gostaria de listar seus arquivos e diretórios? (Y/N)').upper()
         if resposta not in ('Y', 'N'):
-            print('você precisa escolher uma das opções possíveis (Y/N)')
+            print('>>> Você precisa escolher uma das opções possíveis (Y/N)')
         elif resposta == 'Y':
             for i in lista_geral:
                 print(i)
@@ -42,14 +42,14 @@ def finding_extentions():
             lista_extensoes.append(ext)
     print(f'>>>você tem arquivos em {len(lista_extensoes)} extenções diferentes')
     print(f'>>>sendo elas {lista_extensoes}')
-    print("__**__**" * 10)
+    print("________" * 10)
 
 
 def deseja_organizar_arquivos():
     while True:
-        resposta = input('Você gostaria de ORGANIZAR seus arquivos em diretórios por extenção? (Y/N)').upper()
+        resposta = input('??? Você gostaria de ORGANIZAR seus arquivos em diretórios por extenção? (Y/N)').upper()
         if resposta not in ('Y', 'N'):
-            print('você precisa escolher uma das opções possíveis (Y/N)')
+            print('>>> Você precisa escolher uma das opções possíveis (Y/N)')
         elif resposta == 'Y':
             dir_atual = os.getcwd()  #<class 'str'>
             for i in lista_extensoes: #criando 1 pasta para cada tipo de extencao
@@ -59,7 +59,7 @@ def deseja_organizar_arquivos():
                 atual = os.getcwd() + "/" + i
                 destino = os.getcwd() + "/" + i.split('.')[-1] + "/" + i
                 os.rename(atual, destino)
-            print(f'>>> seus arquivos foram ORGANIZADOS!!')
+            print(f'>>> Seus arquivos foram ORGANIZADOS!!')
             break
         else:
             break
