@@ -49,7 +49,7 @@ def finding_extentions():
     print(f'>>> Sendo elas {lista_extensoes}')
     print("________" * 10)#
 
-
+#TODO adicionar opção de organizar por datas
 def deseja_organizar_arquivos():
     while True:
         resposta = input('??? Você gostaria de ORGANIZAR seus arquivos em diretórios por extenção? (Y/N)').upper()
