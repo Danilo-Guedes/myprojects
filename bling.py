@@ -1,8 +1,9 @@
+# using python 3.10.2
+
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 import sys
-
 import time
 
 URL = "https://www.bling.com.br/login"
