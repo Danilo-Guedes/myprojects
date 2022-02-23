@@ -1,48 +1,46 @@
-"""
-TODO Quando o script der erro qualquer erro, consumir uma API de whatsapp e me eviar mensagem de texto
-"""
-from bs4 import BeautifulSoup
-import requests
-import selenium
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+import sys
+
 import time
-from senhas import login_bling, senha_bling, site_bling
+
+URL = "https://www.bling.com.br/login"
+LOGIN = "Daniloguedes@raizesveg"
+SENHA = sys.argv[1]
 
 
-# site = requests.get('https://www.bling.com.br/login')
-# print(site.content)
+def bling_connection():
+    try:          
+        driver.get(URL)
+        driver.find_element(By.ID, 'username').clear()
+        driver.find_element(By.ID, 'username').send_keys(LOGIN)
+        driver.find_element(By.ID, 'senha').clear()
+        driver.find_element(By.ID, 'senha').send_keys(SENHA)
+        driver.find_element(By.NAME, 'enviar').click()
+        time.sleep(2)
 
-#abrindo o site a acessando na minha conta
-def relatorio_de_vendas_diaras():
-    path_para_chrome_driver = 'C:/Users/dan_g/Desktop/programação/Python/myprojects/chromedriver.exe'
-    browser = webdriver.Chrome(executable_path = path_para_chrome_driver)
-    browser.get(site_bling)
-    browser.find_element_by_id('username').clear()
-    browser.find_element_by_id('username').send_keys(login_bling)
-    browser.find_element_by_id('senha').clear()
-    browser.find_element_by_id('senha').send_keys(senha_bling)
-    browser.find_element_by_name('enviar').click()
-    time.sleep(2)
-    browser.get('https://www.bling.com.br/relatorios.php?id=3&nome=Vendas') #acessando a tela do relatório de vendas
-    time.sleep(2)
-    browser.find_element_by_xpath('//*[@id="resultado"]/ul[3]/li[2]').click()  # escolhendo o relatório de vendas
-    time.sleep(2)
-    browser.find_element_by_xpath('//*[@id="periodoPesq"]').click()
-    time.sleep(0.5)
-    browser.find_element_by_xpath('//*[@id="periodoPesq"]/option[2]').click() # escolhendo o período como "do dia"
-    time.sleep(2)
-    browser.find_element_by_xpath('//*[@id="campo1"]').click()
-    time.sleep(0.5)
-    browser.find_element_by_xpath('//*[@id="campo1"]/option[2]').click() # escolhendo agrupar por "produto"
-    time.sleep(2)
-    browser.find_element_by_id('btnVisualizar').click() #clicando em visualizar
-    time.sleep(2)
-    browser.find_element_by_xpath('//*[@id="exportarRelatorio"]').click() # exportando para Excel
-    time.sleep(2)
-    browser.find_element_by_xpath('/html/body/div[10]/div[3]/div/button[1]').click()
-    time.sleep(2)
-    browser.find_element_by_xpath ('//*[@id="menu-acoes"]/li[5]/a').click()
+        try:
+            popover = driver.find_element(By.CLASS_NAME, "popover")
+            if popover != None:
+                print(f"aquiiiii {popover}")
+                driver.find_element(By.CLASS_NAME, "icon-remove").click() 
+        except Exception as e:
+            print("nenhum popover de tour encontrado")
+
+        print(f"Conexão com o {LOGIN} feita com SUCESSO!!")
+    except Exception as error:
+        print("Algo deu errado com a tentativa de logar no BLING!!!")
+        print(error)
+    
+
+def bling_disconnect():
+    driver.quit()
 
 
 if __name__ == '__main__':
-    relatorio_de_vendas_diaras()
+    driver = webdriver.Chrome()
+    bling_connection()
+    time.sleep(5)
+    bling_disconnect()
+
